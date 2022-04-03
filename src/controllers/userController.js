@@ -15,4 +15,13 @@ const register = async (req, res) => {
     }
 }
 
-module.exports = { register }
+const login = async (req, res) => {
+    const selectedUser = await User.findOne({ email: req.body.email });
+
+    if (!selectedUser) return res.status(400).send("Email os Password incorrect")
+
+    res.send("User logged")
+
+}
+
+module.exports = { register, login }
